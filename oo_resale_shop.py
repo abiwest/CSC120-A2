@@ -2,26 +2,36 @@ from computer import *
 
 class ResaleShop:
 
-    # What attributes will it need?
-    
-    # How will you set up your constructor?
-    # Remember: in python, all constructors have the same name (__init__)
+    """
+    Creates empty inventory
+    """
     def __init__(self, inventory = None):
         if inventory is None:
-            inventory = [] # creates an empty list to start
+            inventory = []
         self.inventory = inventory
 
-    # What methods will you need?
+    """
+    Param: computer 
+    return: adds computer to inventory with an index
+    """    
     def buy(self, computer: Computer):
         self.inventory.append(computer)
         return self.inventory.index(computer)
     
+    """
+    param: item_id, new_price (based on the year of computer)
+    function sets the new computer price in the inventory
+    """
     def update_price(self, item_id: int, new_price: int):
         if self.inventory[item_id] is not None:
             self.inventory[item_id].price = new_price
         else:
             print("Item", item_id, "not found. Cannot update price.")
 
+    """
+    Updates computer OS
+    param: item_id (int), new_os (str, what operating system we want to add)
+    """
     def refurbish(self, item_id: int, new_os: Optional[str] = None):
         if self.inventory[item_id] is not None:
             computer = self.inventory[item_id]
@@ -29,13 +39,20 @@ class ResaleShop:
         else:
             print("Item", item_id, "not found. Cannot refurbish.")
 
+    """
+    removes computer from inventory if the ID is valid
+    param: item_id (int), the index of the computer we want to sell
+    """
     def sell(self, item_id: int):
-        if self.item_id is not None:
+        if self.inventory[item_id] is not None:
             self.inventory.pop(item_id)
             print("Item", item_id, "sold!")
         else: 
             print("Item", item_id, "not found. Please select another item to sell.")
 
+    """
+    prints the current store inventory
+    """
     def print_inventory(self):
         # If the inventory is not empty
         if self.inventory:

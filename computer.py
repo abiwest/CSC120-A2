@@ -2,7 +2,7 @@ from typing import Dict, Optional
 
 class Computer:
 
-    # What attributes will it need?
+    # Attributes
     description: str
     processor_type: str
     hard_drive_capacity: int
@@ -11,8 +11,7 @@ class Computer:
     year_made: int
     price: int
 
-    # How will you set up your constructor?
-    # Remember: in python, all constructors have the same name (__init__)
+    # Constructor
     def __init__(self, description, processor_type, hard_drive_capacity, memory, operating_system, year_made, price):
         self.description = description
         self.processor_type = processor_type
@@ -22,21 +21,29 @@ class Computer:
         self.year_made = year_made
         self.price = price
 
-    # What methods will you need?
+
+    """
+    Updates the price of the computer based on its age
+    Parameters:
+    - new_os (Optional[str]): can optionally update the operating system
+    """
     def refurbish(self, new_os: Optional[str] = None):
         if self.year_made < 2000:
-            self.price = 0 # too old to sell, donation only
+            self.price = 0
         elif self.year_made < 2012:
-            self.price = 250 # heavily-discounted price on machines 10+ years old
+            self.price = 250
         elif self.year_made < 2018:
-            self.price = 550 # discounted price on machines 4-to-10 year old machines
+            self.price = 550
         else:
-            self.price = 1000 # recent stuff
+            self.price = 1000
 
         if new_os is not None:
-            self.operating_system = new_os # update details after installing new OS
+            self.operating_system = new_os
     
-    def __str__(self):
+    """
+    returns: string of information about the computer
+    """
+    def __str__(self): # this returns the info about the computer
         return (
             f"Description: {self.description}, Processor: {self.processor_type}, "
             f"Storage: {self.hard_drive_capacity}, Memory: {self.memory}, "
